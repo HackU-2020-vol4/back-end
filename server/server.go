@@ -1,8 +1,10 @@
 package server
 
 import (
-	"back-end/controller/user"
+	"back-end/controller/publisher"
 	"back-end/controller/room"
+	"back-end/controller/user"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,6 +33,14 @@ func router() *gin.Engine {
 		rooms.POST("", room.Create)
 		rooms.PUT("/:id", room.Update)
 		rooms.DELETE("/:id", room.Delete)
+	}
+	publishers := router.Group("/publishers")
+	{
+		publisher := publisher.PublisherController{}
+		publishers.GET("/:id", publisher.Show)
+		publishers.POST("/", publisher.Create)
+		publishers.PUT("/update/:id", publisher.Update)
+		publishers.DELETE("/delete/:id", publisher.Delete)
 	}
 	return router
 }
