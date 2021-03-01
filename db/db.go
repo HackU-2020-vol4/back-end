@@ -4,7 +4,7 @@ import (
 	"go-template/entity"
 
 	"github.com/jinzhu/gorm"
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var (
@@ -13,14 +13,23 @@ var (
 )
 
 func Init() {
-	db, err = gorm.Open("sqlite3", "mvc.db")
+	db, err = gorm.Open("mysql", "mvc.db")
 	if err != nil {
 		panic(err)
 	}
 	autoMigration()
 }
 
-func GetDB() *gorm.DB {
+func GetDB() (db *gorm.DB) {
+	dbDriver := "mysql"
+	dbUser := "hacku"
+	dbPass := "password"
+	dbName := "hackudb"
+	dbOption := "?parseTime=true"
+	db, err := gorm.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName+dbOption)
+	if err != nil {
+		panic(err)
+	}
 	return db
 }
 
@@ -31,6 +40,8 @@ func Close() {
 }
 
 func autoMigration() {
-	db.AutoMigrate(&entity.User{})
-	db.AutoMigrate(&entity.Room{})
+	db.AutoMigrate(&entity.Publisher{})
+	db.AutoMigrate(&entity.Keyword{})
+	db.AutoMigrate(&entity.KeywordAssociation{})
+	db.AutoMigrate(&entity.Solution{})
 }
