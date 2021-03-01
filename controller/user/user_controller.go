@@ -1,7 +1,7 @@
 package user
 
 import (
-	user "go-template/service/user"
+	user "back-end/service/user"
 	"fmt"
 
 	"github.com/gin-gonic/gin"

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-template/db"
-	"go-template/server"
+	"back-end/db"
+	"back-end/server"
 )
 
 func main() {
