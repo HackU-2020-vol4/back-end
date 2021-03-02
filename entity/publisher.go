@@ -3,7 +3,7 @@ package entity
 import "time"
 
 type Publisher struct {
-	ID         uint `json:"ID"`
-	RoomID     string  `json:"roomid"`
+	ID         uint
+	RoomID     string
 	CreatedAt time.Time
 }
