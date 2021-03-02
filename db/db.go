@@ -1,7 +1,7 @@
 package db
 
 import (
-	"go-template/entity"
+	"back-end/entity"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
