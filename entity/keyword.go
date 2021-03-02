@@ -2,12 +2,16 @@ package entity
 
 import "time"
 
-type Publisher struct {
+type Keyword struct {
 	ID        uint `gorm:"primary_key"`
-	roomID    string
+	Comment   string
 	CreatedAt time.Time
+	UpdatedAt time.Time
+	// Foreign Key
+	PublisherID string
+	// Belongs to
+	Publisher Publisher `gorm:"references:roomID"`
 	// Has Many
-	Keywords            []Keyword            `gorm:"constraint:OnDelete:CASCADE"`
 	KeywordAssociations []KeywordAssociation `gorm:"constraint:OnDelete:CASCADE"`
 	Solutions           []Solution           `gorm:"constraint:OnDelete:CASCADE"`
 }
