@@ -37,10 +37,7 @@ func router() *gin.Engine {
 	publishers := router.Group("/publishers")
 	{
 		publisher := publisher.PublisherController{}
-		publishers.GET("/:id", publisher.Show)
 		publishers.POST("/", publisher.Create)
-		publishers.PUT("/update/:id", publisher.Update)
-		publishers.DELETE("/delete/:id", publisher.Delete)
 	}
 	return router
 }
