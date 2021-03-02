@@ -33,4 +33,5 @@ func Close() {
 func autoMigration() {
 	db.AutoMigrate(&entity.User{})
 	db.AutoMigrate(&entity.Room{})
+	db.AutoMigrate(&entity.Publisher{})
 }
