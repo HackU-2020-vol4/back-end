@@ -13,7 +13,12 @@ var (
 )
 
 func Init() {
-	db, err = gorm.Open("mysql", "mvc.db")
+	dbDriver := "mysql"
+	dbUser := "hacku"
+	dbPass := "password"
+	dbName := "hackudb"
+	dbOption := "?parseTime=true"
+	_, err := gorm.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName+dbOption)
 	if err != nil {
 		panic(err)
 	}
