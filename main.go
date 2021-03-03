@@ -1,8 +1,8 @@
 package main
 
 import (
-	"go-template/db"
-	"go-template/server"
+	"github.com/HackU-2020-val4/back-end/db"
+	"github.com/HackU-2020-val4/back-end/server"
 )
 
 func main() {
