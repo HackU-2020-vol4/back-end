@@ -1,7 +1,7 @@
 package db
 
 import (
-	"back-end/entity"
+	"github.com/HackU-2020-vol4/back-end/entity"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
