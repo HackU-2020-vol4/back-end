@@ -1,7 +1,7 @@
 package room
 
 import (
-	"go-template/service/room"
+	"github.com/HackU-2020-vol4/back-end/service/room"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
