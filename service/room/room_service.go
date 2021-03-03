@@ -3,8 +3,8 @@ package room
 import (
 	"github.com/gin-gonic/gin"
 
-	"go-template/db"
-	"go-template/entity"
+	"github.com/HackU-2020-vol4/back-end/db"
+	"github.com/HackU-2020-vol4/back-end/entity"
 )
 
 type Service struct{}
