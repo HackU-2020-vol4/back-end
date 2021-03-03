@@ -1,7 +1,7 @@
 package user
 
 import (
-	user "go-template/service/user"
+	"github.com/HackU-2020-vol4/back-end/service/user"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
