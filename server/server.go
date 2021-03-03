@@ -1,8 +1,8 @@
 package server
 
 import (
-	"go-template/controller/user"
-	"go-template/controller/room"
+	"github.com/HackU-2020-vol4/back-end/controller/user"
+	"github.com/HackU-2020-vol4/back-end/controller/room"
 	"github.com/gin-gonic/gin"
 )
 
