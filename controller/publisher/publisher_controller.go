@@ -1,8 +1,9 @@
 package publisher
 
 import (
-	"back-end/service/publisher"
 	"fmt"
+
+	"github.com/HackU-2020-vol4/back-end/service/publisher"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,9 +1,9 @@
 package publisher
 
 import (
-	"back-end/db"
-	"back-end/entity"
-	"back-end/helpers"
+	"github.com/HackU-2020-vol4/back-end/db"
+	"github.com/HackU-2020-vol4/back-end/entity"
+	"github.com/HackU-2020-vol4/back-end/helpers"
 	"github.com/gin-gonic/gin"
 )
 

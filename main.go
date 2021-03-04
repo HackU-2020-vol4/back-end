@@ -1,8 +1,8 @@
 package main
 
 import (
-	"back-end/db"
-	"back-end/server"
+	"github.com/HackU-2020-vol4/back-end/db"
+	"github.com/HackU-2020-vol4/back-end/server"
 )
 
 func main() {

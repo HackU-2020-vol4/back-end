@@ -1,9 +1,10 @@
 package keyword
 
 import (
-	"back-end/db"
-	"back-end/entity"
 	"fmt"
+
+	"github.com/HackU-2020-vol4/back-end/db"
+	"github.com/HackU-2020-vol4/back-end/entity"
 
 	"github.com/gin-gonic/gin"
 )

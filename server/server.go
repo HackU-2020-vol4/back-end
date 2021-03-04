@@ -1,7 +1,7 @@
 package server
 
 import (
-	"back-end/controller/publisher"
+	"github.com/HackU-2020-vol4/back-end/controller/publisher"
 
 	"github.com/HackU-2020-vol4/back-end/controller/keyword"
 	"github.com/gin-gonic/gin"
