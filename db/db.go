@@ -18,11 +18,11 @@ func Init() {
 	dbPass := "password"
 	dbName := "hackudb"
 	dbOption := "?parseTime=true"
-	_, err := gorm.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName+dbOption)
+	db, err := gorm.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName+dbOption)
 	if err != nil {
 		panic(err)
 	}
-	autoMigration()
+	autoMigration(db)
 }
 
 func GetDB() (db *gorm.DB) {
@@ -44,7 +44,7 @@ func Close() {
 	}
 }
 
-func autoMigration() {
+func autoMigration(db *gorm.DB) {
 	db.AutoMigrate(&entity.Publisher{})
 	db.AutoMigrate(&entity.Keyword{})
 	db.AutoMigrate(&entity.KeywordAssociation{})
