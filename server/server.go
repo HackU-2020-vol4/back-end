@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/HackU-2020-vol4/back-end/controller/publisher"
-
+	"github.com/HackU-2020-vol4/back-end/controller/keywordAssociation"
 	"github.com/HackU-2020-vol4/back-end/controller/keyword"
 	"github.com/gin-gonic/gin"
 )
@@ -27,6 +27,14 @@ func router() *gin.Engine {
 		keywords.POST("/:publisherID/create", keyword.Create)
 		keywords.DELETE("/:id", keyword.Destroy)
 		keywords.PUT("/:id", keyword.Update)
+	}
+	associations := router.Group("/associations")
+	{
+		association := keywrodAssociation.KeywrodAssociationController{}
+		associations.GET("/keywords/:keywordID", association.Index)
+		associations.POST("/create/publishers/:publisherID/keyword/:keywordID", association.Create)
+		associations.DELETE("/:id", association.Destroy)
+		associations.PUT("/:id", association.Update)
 	}
 	return router
 }
