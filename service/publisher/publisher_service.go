@@ -14,8 +14,12 @@ type Publisher entity.Publisher
 func (s Service) CreateModel(c *gin.Context) (Publisher, error) {
 	db := db.GetDB()
 	var p Publisher
-	p.RoomID = helpers.RandomString(20)
-
+	for {
+		p.RoomID = helpers.RandomString(20)
+		if err := db.Where("room_id = ?", p.RoomID).Find(&p).Error; err != nil {
+			break;
+		}
+	}
 	if err := db.Create(&p).Error; err != nil {
 		return p, err
 	}

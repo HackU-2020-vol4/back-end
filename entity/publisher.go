@@ -4,7 +4,7 @@ import "time"
 
 type Publisher struct {
 	ID        uint `gorm:"primary_key"`
-	RoomID    string
+	RoomID    string `gorm:"unique_index:unique_roomID"`
 	CreatedAt time.Time
 	// Has Many
 	Keywords            []Keyword            `gorm:"constraint:OnDelete:CASCADE"`

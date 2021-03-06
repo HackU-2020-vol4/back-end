@@ -1,4 +1,4 @@
-package keywrodAssociation
+package keywordAssociation
 
 import (
 	"fmt"
@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type KeywrodAssociationController struct{}
+type KeywordAssociationController struct{}
 
-func (pc KeywrodAssociationController) Index(c *gin.Context) {
+func (pc KeywordAssociationController) Index(c *gin.Context) {
 	keywordID := c.Params.ByName("keywordID")
 	var s keywordAssociation.Service
 	ka, err := s.GetbyKeyword(keywordID)
@@ -21,7 +21,7 @@ func (pc KeywrodAssociationController) Index(c *gin.Context) {
 	}
 }
 
-func (pc KeywrodAssociationController) Create(c *gin.Context) {
+func (pc KeywordAssociationController) Create(c *gin.Context) {
 	var s keywordAssociation.Service
 	p, err := s.CreateModel(c)
 	if err != nil {
@@ -32,18 +32,18 @@ func (pc KeywrodAssociationController) Create(c *gin.Context) {
 	}
 }
 
-func (pc KeywrodAssociationController) Destroy(c *gin.Context) {
+func (pc KeywordAssociationController) Destroy(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var s keywordAssociation.Service
-	if err := s.DeleteByID(id); err != nil{
+	if err := s.DeleteByID(id); err != nil {
 		c.AbortWithStatus(403)
 		fmt.Println(err)
-	}else {
+	} else {
 		c.JSON(204, gin.H{"id #" + id: "deleted"})
 	}
 }
 
-func (pc KeywrodAssociationController) Update(c *gin.Context) {
+func (pc KeywordAssociationController) Update(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var s keywordAssociation.Service
 	p, err := s.UpdateByID(id, c)
