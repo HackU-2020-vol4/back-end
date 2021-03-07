@@ -4,8 +4,8 @@ import (
 	"github.com/HackU-2020-vol4/back-end/controller/keyword"
 	"github.com/HackU-2020-vol4/back-end/controller/keywordAssociation"
 	"github.com/HackU-2020-vol4/back-end/controller/publisher"
+	"github.com/HackU-2020-vol4/back-end/controller/solution"
 	"github.com/gin-contrib/cors"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -23,7 +23,7 @@ func router() *gin.Engine {
 	publishers := router.Group("/publishers")
 	{
 		publisher := publisher.PublisherController{}
-		publishers.POST("/", publisher.Create)
+		publishers.POST("/create", publisher.Create)
 	}
 	keywords := router.Group("/keywords")
 	{
@@ -35,11 +35,19 @@ func router() *gin.Engine {
 	}
 	associations := router.Group("/associations")
 	{
-		association := keywrodAssociation.KeywrodAssociationController{}
-		associations.GET("/keywords/:keywordID", association.Index)
-		associations.POST("/create/publishers/:publisherID/keyword/:keywordID", association.Create)
+		association := keywordAssociation.KeywordAssociationController{}
+		associations.GET("/:keywordID", association.Index)
+		associations.POST("/:keywordID/:publisherID/create", association.Create)
 		associations.DELETE("/:id", association.Destroy)
 		associations.PUT("/:id", association.Update)
+	}
+	solutions := router.Group("/solutions")
+	{
+		solution := solution.SolutionController{}
+		solutions.GET("/:keywordAssociationID", solution.Index)
+		solutions.POST("/:keywordAssociationID/:keywordID/:publisherID/create", solution.Create)
+		solutions.DELETE("/:id", solution.Destroy)
+		solutions.PUT("/:id", solution.Update)
 	}
 	return router
 }

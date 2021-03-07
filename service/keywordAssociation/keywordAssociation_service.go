@@ -1,9 +1,10 @@
 package keywordAssociation
 
 import (
+	"strconv"
+
 	"github.com/HackU-2020-vol4/back-end/db"
 	"github.com/HackU-2020-vol4/back-end/entity"
-	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,7 +32,7 @@ func (s Service) CreateModel(c *gin.Context) (keywordAssociation, error) {
 	convertedStrInt64, _ := strconv.ParseInt(keyword_id, 10, 64)
 	ka.KeywordID = uint(convertedStrInt64)
 	if err := c.BindJSON(&ka); err != nil {
-
+		return ka, err
 	}
 	if err := db.Create(&ka).Error; err != nil {
 		return ka, err
