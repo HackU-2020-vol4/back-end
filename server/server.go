@@ -5,6 +5,7 @@ import (
 	"github.com/HackU-2020-vol4/back-end/controller/keywordAssociation"
 	"github.com/HackU-2020-vol4/back-end/controller/publisher"
 	"github.com/HackU-2020-vol4/back-end/controller/solution"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,6 +17,9 @@ func Init() {
 //routerの詳細 https://pkg.go.dev/github.com/gin-gonic/gin#readme-grouping-routes
 func router() *gin.Engine {
 	router := gin.Default()
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+	router.Use(cors.New(config))
 	publishers := router.Group("/publishers")
 	{
 		publisher := publisher.PublisherController{}
