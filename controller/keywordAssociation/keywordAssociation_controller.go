@@ -21,6 +21,19 @@ func (pc KeywordAssociationController) Index(c *gin.Context) {
 	}
 }
 
+func (pc KeywordAssociationController) PublisherIndex(c *gin.Context) {
+	keywordID := c.Params.ByName("publisher_id")
+	var s keywordAssociation.Service
+	ka, err := s.GetbyKeyword(keywordID)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, ka)
+	}
+}
+
+
 func (pc KeywordAssociationController) Create(c *gin.Context) {
 	var s keywordAssociation.Service
 	p, err := s.CreateModel(c)

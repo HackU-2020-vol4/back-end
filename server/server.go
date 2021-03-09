@@ -37,6 +37,7 @@ func router() *gin.Engine {
 	{
 		association := keywordAssociation.KeywordAssociationController{}
 		associations.GET("/:keywordID", association.Index)
+		associations.GET("/:keywordID/:publisherID", association.PublisherIndex)
 		associations.POST("/:keywordID/:publisherID/create", association.Create)
 		associations.DELETE("/:id", association.Destroy)
 		associations.PUT("/:id", association.Update)
