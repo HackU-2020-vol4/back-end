@@ -61,6 +61,17 @@ func (s Service) DeleteByID(id string) error {
 	return nil
 }
 
+func (s Service) DeleteByKeyword_id(keyword_id string) error {
+	db := db.GetDB()
+	var ka keywordAssociation
+	if err := db.Where("keyword_id = ?", keyword_id).Delete(&ka).Error; err != nil {
+		return err
+	}
+	defer db.Close()
+	return nil
+}
+
+
 func (s Service) UpdateByID(id string, c *gin.Context) (keywordAssociation, error) {
 	db := db.GetDB()
 	var ka keywordAssociation

@@ -56,6 +56,17 @@ func (pc KeywordAssociationController) Destroy(c *gin.Context) {
 	}
 }
 
+func (pc KeywordAssociationController) KeywordIdDestroy(c *gin.Context) {
+	id := c.Params.ByName("keyword_id")
+	var s keywordAssociation.Service
+	if err := s.DeleteByKeyword_id(id); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"keyword_id #" + id: "deleted"})
+	}
+}
+
 func (pc KeywordAssociationController) Update(c *gin.Context) {
 	id := c.Params.ByName("id")
 	var s keywordAssociation.Service

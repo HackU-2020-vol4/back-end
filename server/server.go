@@ -40,6 +40,7 @@ func router() *gin.Engine {
 		associations.GET("/:keywordID/:publisherID", association.PublisherIndex)
 		associations.POST("/:keywordID/:publisherID/create", association.Create)
 		associations.DELETE("/:id", association.Destroy)
+		associations.DELETE("/:id/:keyword_id", association.KeywordIdDestroy)
 		associations.PUT("/:id", association.Update)
 	}
 	solutions := router.Group("/solutions")
