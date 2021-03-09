@@ -20,6 +20,7 @@ func (s Service) GetbyKeyword(keywordID string) ([]keywordAssociation, error) {
 	if err := db.Where("keyword_id = ?", keywordID).Find(&ka).Error; err != nil {
 		return ka, err
 	}
+	defer db.Close()
 	return ka, nil
 }
 
@@ -37,6 +38,7 @@ func (s Service) CreateModel(c *gin.Context) (keywordAssociation, error) {
 	if err := db.Create(&ka).Error; err != nil {
 		return ka, err
 	}
+	defer db.Close()
 	return ka, nil
 }
 
@@ -46,6 +48,7 @@ func (s Service) DeleteByID(id string) error {
 	if err := db.Where("id = ?", id).Delete(&ka).Error; err != nil {
 		return err
 	}
+	defer db.Close()
 	return nil
 }
 
@@ -59,5 +62,6 @@ func (s Service) UpdateByID(id string, c *gin.Context) (keywordAssociation, erro
 		return ka, err
 	}
 	db.Save(&ka)
+	defer db.Close()
 	return ka, nil
 }

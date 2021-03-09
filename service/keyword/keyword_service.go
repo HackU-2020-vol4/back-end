@@ -20,6 +20,7 @@ func (s Service) GetByPublisher(publisherID string) ([]Keyword, error) {
 	if err := db.Where("publisher_id = ?", publisherID).Find(&k).Error; err != nil {
 		return k, err
 	}
+	defer db.Close()
 	return k, nil
 }
 
@@ -35,6 +36,7 @@ func (s Service) CreateModel(c *gin.Context) (Keyword, error) {
 	if err := db.Create(&k).Error; err != nil {
 		return k, err
 	}
+	defer db.Close()
 	return k, nil
 }
 
@@ -45,6 +47,7 @@ func (s Service) DeleteByID(id string) error {
 	if err := db.Where("id = ?", id).Delete(&k).Error; err != nil {
 		return err
 	}
+	defer db.Close()
 	return nil
 }
 
@@ -62,6 +65,6 @@ func (s Service) UpdateByID(id string, c *gin.Context) (Keyword, error) {
 	}
 
 	db.Save(&k)
-
+	defer db.Close()
 	return k, nil
 }

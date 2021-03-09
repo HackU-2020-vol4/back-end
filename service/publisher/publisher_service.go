@@ -15,7 +15,7 @@ func (s Service) CreateModel(c *gin.Context) (Publisher, error) {
 	db := db.GetDB()
 	var p Publisher
 	var roomid string
-
+	
 	for {
 		roomid = helpers.RandomString(20)
 		// RoomIDがUniqueかチェック
@@ -29,6 +29,7 @@ func (s Service) CreateModel(c *gin.Context) (Publisher, error) {
 	if err := db.Create(&p).Error; err != nil {
 		return p, err
 	}
+	defer db.Close()
 	return p, nil
 }
 
@@ -38,5 +39,6 @@ func RecordCheck(roomid string) bool {
 	var recordNotFound bool
 	// RecordNotFound()はレコードに値がない時Trueを返す
 	recordNotFound = db.Where("room_id = ?", roomid).First(&p).RecordNotFound()
+	defer db.Close()
 	return recordNotFound
 }
