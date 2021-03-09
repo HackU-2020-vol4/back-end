@@ -23,6 +23,15 @@ func (s Service) GetbyKeyword(keywordID string) ([]keywordAssociation, error) {
 	defer db.Close()
 	return ka, nil
 }
+func (s Service) GetbyKeywordPublisher(publisherID string) ([]keywordAssociation, error) {
+	db := db.GetDB()
+	var ka []keywordAssociation
+	if err := db.Where("publisher_id = ?", publisherID).Find(&ka).Error; err != nil {
+		return ka, err
+	}
+	defer db.Close()
+	return ka, nil
+}
 
 func (s Service) CreateModel(c *gin.Context) (keywordAssociation, error) {
 	db := db.GetDB()

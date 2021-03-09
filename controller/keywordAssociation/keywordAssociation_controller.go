@@ -22,9 +22,9 @@ func (pc KeywordAssociationController) Index(c *gin.Context) {
 }
 
 func (pc KeywordAssociationController) PublisherIndex(c *gin.Context) {
-	keywordID := c.Params.ByName("publisher_id")
+	publisherID := c.Params.ByName("publisherID")
 	var s keywordAssociation.Service
-	ka, err := s.GetbyKeyword(keywordID)
+	ka, err := s.GetbyKeywordPublisher(publisherID)
 	if err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
