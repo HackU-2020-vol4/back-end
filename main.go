@@ -5,7 +5,10 @@ import (
 	"github.com/HackU-2020-vol4/back-end/server"
 )
 
+
+
 func main() {
 	db.Init()
 	server.Init()
+	db.Close()
 }

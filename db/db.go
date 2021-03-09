@@ -23,6 +23,7 @@ func Init() {
 		panic(err)
 	}
 	autoMigration(db)
+	defer db.Close()
 }
 
 func GetDB() (db *gorm.DB) {
