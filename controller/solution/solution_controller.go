@@ -43,6 +43,28 @@ func (pc SolutionController) Destroy(c *gin.Context) {
 	}
 }
 
+func (pc SolutionController) AssociationDestroy(c *gin.Context) {
+	keywordAssociationID := c.Param("keywordAssociationID")
+	var s solution.Service
+	if err := s.DeleteByKeywordAssociationID(keywordAssociationID); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"id #" + keywordAssociationID: "deleted"})
+	}
+}
+
+func (pc SolutionController) KeywordDestroy(c *gin.Context) {
+	keywordID := c.Param("keywordID")
+	var s solution.Service
+	if err := s.DeleteByKeywordID(keywordID); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"id #" + keywordID: "deleted"})
+	}
+}
+
 func (pc SolutionController) Update(c *gin.Context) {
 	id := c.Param("id")
 	var s solution.Service
