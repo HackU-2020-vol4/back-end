@@ -21,6 +21,19 @@ func (pc KeywordAssociationController) Index(c *gin.Context) {
 	}
 }
 
+func (pc KeywordAssociationController) PublisherIndex(c *gin.Context) {
+	publisherID := c.Params.ByName("publisherID")
+	var s keywordAssociation.Service
+	ka, err := s.GetbyKeywordPublisher(publisherID)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, ka)
+	}
+}
+
+
 func (pc KeywordAssociationController) Create(c *gin.Context) {
 	var s keywordAssociation.Service
 	p, err := s.CreateModel(c)
@@ -40,6 +53,17 @@ func (pc KeywordAssociationController) Destroy(c *gin.Context) {
 		fmt.Println(err)
 	} else {
 		c.JSON(204, gin.H{"id #" + id: "deleted"})
+	}
+}
+
+func (pc KeywordAssociationController) KeywordIdDestroy(c *gin.Context) {
+	id := c.Params.ByName("keyword_id")
+	var s keywordAssociation.Service
+	if err := s.DeleteByKeyword_id(id); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"keyword_id #" + id: "deleted"})
 	}
 }
 
