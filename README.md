@@ -48,3 +48,6 @@ $ sudo systemctl enable mysqld
 $ sudo go build main.go
 $ ./main &
 ```
+
+パブリックIPv4アドレス
+http://54.168.42.94/
