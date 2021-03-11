@@ -12,7 +12,7 @@ $ sudo systemctl start nginx.service
 $ sudo nginx -s reload
 
 # nginx自動起動
-sudo systemctl enable nginx
+$ sudo systemctl enable nginx
 
 # nginx設定ファイルを編集
 $ sudo vi /etc/nginx/nginx.conf
