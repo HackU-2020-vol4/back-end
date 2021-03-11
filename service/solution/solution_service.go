@@ -25,6 +25,16 @@ func (s Service) GetBySolution(keywordAssociationID string) ([]Solution, error) 
 	return sl, nil
 }
 
+func (s Service) GetByPublisherID(publisherID string) ([]Solution, error) {
+	db := db.GetDB()
+	var sl []Solution
+	if err := db.Where("publisher_id = ?", publisherID).Find(&sl).Error; err != nil {
+		return sl, err
+	}
+	defer db.Close()
+	return sl, nil
+}
+
 // create
 func (s Service) CreateModel(c *gin.Context) (Solution, error) {
 	db := db.GetDB()

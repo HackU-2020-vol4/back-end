@@ -21,6 +21,18 @@ func (pc SolutionController) Index(c *gin.Context) {
 	}
 }
 
+func (pc SolutionController) PublisherIndex(c *gin.Context) {
+	publisherID := c.Param("publisherID")
+	var s solution.Service
+	sl, err := s.GetByPublisherID(publisherID)
+	if err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, sl)
+	}
+}
+
 func (pc SolutionController) Create(c *gin.Context) {
 	var s solution.Service
 	p, err := s.CreateModel(c)
