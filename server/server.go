@@ -61,6 +61,7 @@ func router() *gin.Engine {
 		votes.GET("/:solutionID/:publisherID/index",   vote.Index)
 		votes.POST("/:solutionID/:publisherID/create", vote.Create)
 		votes.DELETE("/:solutionID/:publisherID",      vote.Destroy)
+		votes.DELETE("/:solutionID/:publisherID/all",      vote.AllDestroy)
 	}
 	return router
 }

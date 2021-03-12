@@ -52,3 +52,15 @@ func (s Service) DeleteByID(solutionID string, publisherID string) error {
 	defer db.Close()
 	return nil
 }
+
+
+func (s Service) DeleteByPublisherID(publisherID string) error {
+	db := db.GetDB()
+	var ka Vote
+
+	if err := db.Where("publisher_id = ?", publisherID).Delete(&ka).Error; err != nil {
+		return err
+	}
+	defer db.Close()
+	return nil
+}

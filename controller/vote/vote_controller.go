@@ -43,3 +43,14 @@ func (pc VoteController) Destroy(c *gin.Context) {
 		c.JSON(204, gin.H{"id #" + solution_id: "deleted"})
 	}
 }
+
+func (pc VoteController) AllDestroy(c *gin.Context) {
+	publisher_id := c.Params.ByName("publisherID")
+	var s vote.Service
+	if err := s.DeleteByPublisherID(publisher_id); err != nil {
+		c.AbortWithStatus(403)
+		fmt.Println(err)
+	} else {
+		c.JSON(204, gin.H{"id #" : "deleted"})
+	}
+}
