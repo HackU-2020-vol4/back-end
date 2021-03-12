@@ -53,4 +53,5 @@ func autoMigration(db *gorm.DB) {
 	db.AutoMigrate(&entity.Keyword{})
 	db.AutoMigrate(&entity.KeywordAssociation{})
 	db.AutoMigrate(&entity.Solution{})
+	db.AutoMigrate(&entity.Vote{})
 }
