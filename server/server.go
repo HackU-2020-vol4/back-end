@@ -5,6 +5,7 @@ import (
 	"github.com/HackU-2020-vol4/back-end/controller/keywordAssociation"
 	"github.com/HackU-2020-vol4/back-end/controller/publisher"
 	"github.com/HackU-2020-vol4/back-end/controller/solution"
+	"github.com/HackU-2020-vol4/back-end/controller/vote"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -52,6 +53,13 @@ func router() *gin.Engine {
 		solutions.DELETE("/:id/:keywordAssociationID", solution.AssociationDestroy)
 		solutions.DELETE("/:id/:keywordAssociationID/:keywordID", solution.KeywordDestroy)
 		solutions.PUT("/:id", solution.Update)
+	}
+	votes := router.Group("/vote")
+	{
+		vote := vote.VoteController{}
+		votes.GET("/:solutionID/:publisherID/index",   vote.Index)
+		votes.POST("/:solutionID/:publisherID/create", vote.Create)
+		votes.DELETE("/:solutionID/:publisherID",      vote.Destroy)
 	}
 	return router
 }
