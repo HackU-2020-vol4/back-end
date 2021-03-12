@@ -17,7 +17,8 @@ var (
 func Init() {
 	dbDriver := "mysql"
 	dbUser := "hacku"
-	dbPass := "password"
+	dbPass := os.Getenv("HACKU_PASSWORD") // 環境変数から取得　本番用
+	// dbPass := "password" // ローカル用
 	dbName := "hackudb"
 	dbOption := "?parseTime=true"
 	db, err := gorm.Open(dbDriver, dbUser+":"+dbPass+"@/"+dbName+dbOption)
