@@ -10,10 +10,10 @@ import (
 type VoteController struct{}
 
 func (pc VoteController) Index(c *gin.Context) {
-	solutionID  := c.Params.ByName("solutionID")
+	solutionID := c.Params.ByName("solutionID")
 	publisherID := c.Params.ByName("publisherID")
 	var s vote.Service
-	ka, err := s.GetbyVote(solutionID,publisherID)
+	ka, err := s.GetbyVote(solutionID, publisherID)
 	if err != nil {
 		c.AbortWithStatus(404)
 		fmt.Println(err)
@@ -33,8 +33,8 @@ func (pc VoteController) Create(c *gin.Context) {
 }
 
 func (pc VoteController) Destroy(c *gin.Context) {
-	solution_id := c.Params.ByName("solution_id")
-	publisher_id := c.Params.ByName("publisher_id")
+	solution_id := c.Params.ByName("solutionID")
+	publisher_id := c.Params.ByName("publisherID")
 	var s vote.Service
 	if err := s.DeleteByID(solution_id, publisher_id); err != nil {
 		c.AbortWithStatus(403)

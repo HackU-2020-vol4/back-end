@@ -1,7 +1,6 @@
 package vote
 
 import (
-
 	"strconv"
 
 	"github.com/HackU-2020-vol4/back-end/db"
@@ -46,7 +45,8 @@ func (s Service) CreateModel(c *gin.Context) (Vote, error) {
 func (s Service) DeleteByID(solutionID string, publisherID string) error {
 	db := db.GetDB()
 	var ka Vote
-	if err := db.Where("solution_id = ?", 2).Where("publisher_id = ?", "testroomID").Limit(1).Delete(&ka).Error; err != nil {
+
+	if err := db.Where("solution_id = ?", solutionID).Where("publisher_id = ?", publisherID).Limit(1).Delete(&ka).Error; err != nil {
 		return err
 	}
 	defer db.Close()

@@ -48,6 +48,7 @@ func router() *gin.Engine {
 	{
 		solution := solution.SolutionController{}
 		solutions.GET("/:keywordAssociationID", solution.Index)
+		solutions.GET("/:keywordAssociationID/:publisherID", solution.PublisherIndex)
 		solutions.POST("/:keywordAssociationID/:keywordID/:publisherID/create", solution.Create)
 		solutions.DELETE("/:id", solution.Destroy)
 		solutions.DELETE("/:id/:keywordAssociationID", solution.AssociationDestroy)
