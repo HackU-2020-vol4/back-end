@@ -10,7 +10,7 @@ type Keyword struct {
 	// Foreign Key
 	PublisherID string
 	// Belongs to
-	Publisher Publisher `gorm:"references:roomID"`
+	Publisher Publisher `gorm:"references:RoomID"`
 	// Has Many
 	KeywordAssociations []KeywordAssociation `gorm:"constraint:OnDelete:CASCADE"`
 	Solutions           []Solution           `gorm:"constraint:OnDelete:CASCADE"`

@@ -12,7 +12,7 @@ type Solution struct {
 	KeywordID            uint
 	KeywordAssociationID uint
 	// Belongs to
-	Publisher          Publisher `gorm:"references:roomID"`
+	Publisher          Publisher `gorm:"references:RoomID"`
 	Keyword            Keyword
 	KeywordAssociation KeywordAssociation
 }

@@ -11,7 +11,7 @@ type KeywordAssociation struct {
 	PublisherID string
 	KeywordID   uint
 	// Belongs To
-	Publisher Publisher `gorm:"references:roomID"`
+	Publisher Publisher `gorm:"references:RoomID"`
 	Keyword   Keyword
 	// Has Many
 	Solutions []Solution `gorm:"constraint:OnDelete:CASCADE"`
